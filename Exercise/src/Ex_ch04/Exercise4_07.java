@@ -7,9 +7,8 @@ package Ex_ch04;
 public class Exercise4_07 {
 	public static void main(String[] args) {
 		// Math.random() = 0~1
-		int value = ( (int)(Math.random() * 6 + 1) );
-		System.out.println("value:"+value);
-
+		int value = (int) (Math.random() * 6) + 1; // 1 ~ 6 // 마지막 7의 값은 미포함.
+		System.out.println("value:" + value);
 
 	}
 

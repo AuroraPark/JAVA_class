@@ -14,8 +14,9 @@ public class Exercise4_13 {
 			/* (1) . 알맞은 코드를 넣어 완성하시오 */
 			ch = value.charAt(i);	// 하나씩 읽어오기
 
-			if (!(ch >= '0' && ch <= '9')) {	// 하나씩 검사하기
+			if (!('0' <= ch && ch <= '9')) {	// 하나씩 검사하기
 				isNumber = false;	// 아니면 false
+				break;
 			}
 		}
 		if (isNumber) {

@@ -15,6 +15,13 @@ public class Exercise4_10 {
 			sum += tmp;
 			num = num / 10;		// 다음 1의자리 추출을위해10으로 나눈다 
 		}
+		
+		// 개선 코드
+		// while문 이용 코드
+//		while(num>0) {
+//			sum += num % 10;
+//			num /= 10;
+//		}
 		System.out.println("sum=" + sum);
 
 	}

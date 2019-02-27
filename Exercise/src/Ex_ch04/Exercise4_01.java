@@ -23,22 +23,23 @@ public class Exercise4_01 {
 		boolean result = false;
 		
 		//1
-		if(x>10 && x < 20)	result = true;
+		if(10 < x && x < 20)	result = true;
 		//2
 		if(ch != ' '|| ch !='\t') result = true;
 		//3
 		if(ch == 'x' || ch == 'X') result = true;
 		//4
-		if(ch >= '0' || ch <= '9') result = true;
+		if('0' <= ch || ch <= '9') result = true;
 		//5
-		if(ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z') result = true;
+		if('a' <= ch && ch <= 'z' || ch >= 'A' && ch <= 'Z') result = true;
 		//6
 		if(year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) result = true;
 		//7
 		if(powerOn==false) result = true;
+	//	if(!powerOn) result = true;
 		//8
 		if(str=="yes") result = true;
-
+// 개선 코드 : str.equals("yes") or "yes".equals(str)
 	}
 
 }

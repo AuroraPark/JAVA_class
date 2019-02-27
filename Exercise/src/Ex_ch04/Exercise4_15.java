@@ -16,7 +16,9 @@ public class Exercise4_15 {
 			result = result * 10 +temp;	// 기존 결과값 자리수 올려주기 + 1의자리(temp)더하기
 			tmp = tmp / 10; // tmp는 다시 잘라주기
 		}
-		
+		// 개선 코드
+		// result = result * 10 + result % 10;	// 기존 결과에 10을 곱해서 더한다.
+		// tmp /=10;
 		if (number == result)
 			System.out.println(number + "는 회문수 입니다.");
 		else

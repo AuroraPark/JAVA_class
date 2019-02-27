@@ -14,7 +14,7 @@ public class Exercise4_14 {
 	public static void main(String[] args) {
 		// 1~100 answer . 사이의 임의의 값을 얻어서 에 저장한다
 		// 1
-		int answer = (int) (Math.random() * 100 + 1);
+		int answer = (int) (Math.random() * 100) + 1;
 		int input = 0; // 사용자입력을 저장할 공간
 		int count = 0; // 시도횟수를 세기위한 변수
 
@@ -32,7 +32,7 @@ public class Exercise4_14 {
 				System.out.print("더 작은 수를 입력하세요.\n");
 			} else {
 				System.out.println("맞췄습니다.\n시도횟수는 " + count + "번입니다.");
-				break;
+				break;//do while문을 벗어난다
 			}
 		} while (true); // 무한반복문
 
