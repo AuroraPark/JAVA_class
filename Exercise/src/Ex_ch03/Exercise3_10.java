@@ -7,7 +7,11 @@ package Ex_ch03;
 public class Exercise3_10 {
 	public static void main(String[] args) {
 		char ch = 'A';
+		
 		char lowerCase = ( ch < 97 ) ? ( (char)(ch + 32) ) : ch;
+		
+		// 개선 코드 - 문자 대소문자 검사
+		// 'A' <= ch && ch <= 'Z')
 		System.out.println("ch:"+ch);
 		System.out.println("ch to lowerCase:"+lowerCase);
 

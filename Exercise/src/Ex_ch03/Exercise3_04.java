@@ -8,5 +8,6 @@ public class Exercise3_04 {
 	public static void main(String[] args) {
 		int num = 456;
 		System.out.println((num / 100) * 100);
+		// 개선코드 :  괄호 삭제 가능 num / 100 * 100
 	}
 }

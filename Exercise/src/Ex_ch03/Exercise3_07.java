@@ -14,7 +14,7 @@ public class Exercise3_07 {
 
 		// 한번에 형변환
 		float celcius3 = (int) ((5 / 9f * (fahrenheit - 32)) * 100 + 0.5) / 100f;
-
+		
 		// Math.random() 이용 하여 형변환
 		double celcius4 = Math.round(celcius * 100) / 100.0;
 

@@ -9,7 +9,14 @@ public class Exercise3_02 {
 		int sizeOfBucket = 10; // 바구니의 크기 (바구니에 담을 수 있는 사과의 개수)
 		int numOfBucket = ((0 == (numOfApples % sizeOfBucket)) ? numOfApples / sizeOfBucket
 				: numOfApples / sizeOfBucket + 1); // 모든 사과를 담는데 필요한 바구니의 수
-
+		// 개선 코드  : numOfApples/sizeOfBucket + (numOfApples%sizeOfBucket > 0 ? 1 : 0))
+		/*
+		 * 중복되는 코드를 줄여준다.
+		 * numOfApples/sizeOfBucket 가 중복
+		 * 나머지가 있으면 1 나머지 없으면 추가 없음 (0)
+		 * numOfApples/sizeOfBucket +(numOfApples%sizeOfBucket>0)? 1 : 0)
+		 * 
+		 */
 		System.out.println(" :" + numOfBucket); // D // C
 	}
 
