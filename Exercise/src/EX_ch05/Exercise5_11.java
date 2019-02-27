@@ -22,12 +22,12 @@ public class Exercise5_11 {
 				/* (1) . 알맞은 코드를 넣어 완성하시오 */
 				// 1. score 배열 출력하기
 				result[i][j] = score[i][j];
-				// 2. 마지막 행에 총합 출력하기
-				result[i][3] += score[i][j];
-				// 3. 마지막 열에 총합 출력하기
-				result[5][j] += score[i][j];
+				// 2. 마지막 행에 총합 출력하기 - score[i].length
+				result[i][score[i].length] += score[i][j];
+				// 3. 마지막 열에 총합 출력하기 - score.length
+				result[score.length][j] += score[i][j];
 				// 4. 마지막 항에 총합 출력하기
-				result[5][3] += result[i][j];
+				result[score.length][score[i].length] += result[i][j];
 				
 			}
 		}

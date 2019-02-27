@@ -24,6 +24,8 @@ public class Exercise5_05 {
 		for(int i = 0; i < 3; i++) {
 			ball3[i] = ballArr[i];
 		}
+	//개선코드
+		// System.arraycopy(ballArr,0, ball3,0,3);	// 어레이카피 이용하기
 		
 		for (int i = 0; i < ball3.length; i++) {
 			System.out.print(ball3[i]);

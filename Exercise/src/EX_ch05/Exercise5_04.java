@@ -5,7 +5,10 @@ package EX_ch05;
 
 public class Exercise5_04 {
 	public static void main(String[] args) {
-		int[][] arr = { { 5, 5, 5, 5, 5 }, { 10, 10, 10, 10, 10 }, { 20, 20, 20, 20, 20 }, { 30, 30, 30, 30, 30 } };
+		int[][] arr = { { 5, 5, 5, 5, 5, }, 
+						{ 10, 10, 10, 10, 10 }, 
+						{ 20, 20, 20, 20, 20 }, 
+						{ 30, 30, 30, 30, 30 } };
 
 		int total = 0;
 		float average = 0;
@@ -17,7 +20,8 @@ public class Exercise5_04 {
 			}
 		}
 
-		average = (float) (total / 20.0);
+		average =  total / (float)(arr.length*arr[0].length);
+		// 배열 원소 갯수 (arr.length*arr[0].length) - 나누기는 형변환 필요
 		System.out.println("total=" + total);
 		System.out.println("average=" + average);
 

@@ -20,21 +20,13 @@ public class Exercise5_10 {
 			char ch = src.charAt(i);
 
 			/* (1) . 알맞은 코드를 넣어 완성하시오 */
-			// 문자 ch를 숫자로 변환
-			
-			if ((ch - 'a') < 97 ) { // a보다 큰 문자가 오면
-				for (int j = 0; j < abcCode.length; j++) {
-					if (j == (ch - 'a')) {
-						result += abcCode[j]; // 결과에 더해준다.
-					}
-				}
-			} else { // a보다 작은 문자가 오면  // 틀림!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-				for (int j = 0; j < numCode.length; j++) {
-					if (j == (ch - 'a')) 
-						result += numCode[j]; // 결과에 더해준다.
-				}
+			// 문자면 abc코드로 해석
+			// 숫자면 num코드로 해석
+			if ('a' <= ch && ch <= 'z') { // ch가 숫자면
+				result += abcCode[ch - 'a']; // 결과에 더해준다. 'a' 빼면 배열 인덱스 나옴
+			} else if ('0' <= ch && ch <= '9') { // ch가 문자면
+				result += numCode[ch - '0']; // 결과에 더해준다. '0' 빼면 배열 인덱스 나옴
 			}
-
 		}
 
 		System.out.println("src:" + src);

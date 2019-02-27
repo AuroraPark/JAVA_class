@@ -17,14 +17,14 @@ public class Exercise5_13 {
 			/*
 			 * 알맞은 코드를 넣어 완성하시오 char배열 question에 담긴 문자의 위치를 임의로 바꾼다
 			 */
-			int k = 0;	// 임의의 값을 얻어 저장할 변수
+			int idx = 0;	// 임의의 값을 얻어 저장할 변수
 			
 			for (int j = 0; j < question.length; j++) {	// 글자의 길이 question배열의 j만큼 반복한다.
-				k = (int) (Math.random() * question.length);
+				idx = (int) (Math.random() * question.length);
 
 				char tmp = question[i];	// 두 값을 바꾸는데 사용할 임시 변수
-				question[i] = question[k];	// words의 글자의 i번째를 섞어준다.
-				question[k] = tmp;
+				question[i] = question[idx];	// words의 글자의 i번째를 섞어준다.
+				question[idx] = tmp;
 			
 			}
 

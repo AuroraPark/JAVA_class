@@ -23,7 +23,11 @@ public class Exercise5_06 {
 
 			// 출력문
 			System.out.printf("%d원: %d%n", coinUnit[i], tmp);
-
+			
+			// 개선코드
+//			System.out.println(coinUnit[i]+"원: " + money / coinUnit[i]);
+			
+			
 			// 남은 돈을 나머지연산자를 이용해 구한다.
 			money = money % coinUnit[i];
 

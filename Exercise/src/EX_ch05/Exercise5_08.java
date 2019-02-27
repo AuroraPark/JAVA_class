@@ -14,10 +14,16 @@ public class Exercise5_08 {
 			/* (1)알맞은 코드를 넣어 완성하시오 . */
 			// j+1랑 anwser[i]의 값이 같을 때 마다 counter[j]의 값을 증가시켜줌
 			for (int j = 0; j < counter.length; j++) {
+
 				if ((j + 1) == answer[i]) {
 					counter[j]++;
 				}
+
 			}
+			
+//			// 개선코드
+//			counter[answer[i] - 1]++; // answer 값 - 1 (배열은 0부터 시작)
+
 		}
 
 		for (int i = 0; i < counter.length; i++) {

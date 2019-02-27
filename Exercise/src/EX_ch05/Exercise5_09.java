@@ -27,7 +27,17 @@ public class Exercise5_09 {
 			for (int j = 0; j < star[i].length; j++) {
 				/*(1) . 알맞은 코드를 넣어 완성하시오*/
 				// 회전시켜야 하니까 i->j j->i로 바꿔준다.
-				result[j][i] = star[3-i][j];
+				result[j][i] = star[star.length-1-i][j];
+				
+				// 다른 코드
+//				int x = j;
+//				int y = star.length-1-i;
+//				
+//				result[x][y] = star[i][j];
+				
+				
+				
+				
 			}
 		}
 		

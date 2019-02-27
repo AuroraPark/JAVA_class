@@ -33,13 +33,13 @@ public class Exercise5_07 {
 //			 2. 배열 coin에서 coinNum만큼의 동전을 뺀다 
 //			 ( 만일 충분한 동전이 없다면 배열 coin에 있는 만큼만 뺀다. ) 
 			if (coin[i] >= coinNum) {
-				coin[i] = coin[i] - coinNum;
+				coin[i] -= coinNum;
 			} else {
 				coinNum = coin[i];
 				coin[i] = 0;
 			}
 //			 3. 금액에서 동전의 개수(coinNum)와 동전단위를 곱한 값을 뺀다
-			money = money - coinNum * coinUnit[i];
+			money -= coinNum * coinUnit[i];
 //			 
 
 			System.out.println(coinUnit[i] + "원 : " + coinNum);

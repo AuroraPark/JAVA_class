@@ -15,7 +15,7 @@ public class Exercise5_01 {
 		// int[] arr[];							// X		// O
 		// int[] arr = {1,2,3,};				// O        // O
 		// int[] arr = new int[5];				// O		// O
-		// int[] arr = new int[5]{1,2,3,4,5};	// O		// X
+		// int[] arr = new int[5]{1,2,3,4,5};	// O		// X // 두번째 대괄호[]에 숫자 넣으면 안됨
 		// int arr[5];							// X		// X
 		// int[] arr[] = new int[3][];			// X		// O
 	}
