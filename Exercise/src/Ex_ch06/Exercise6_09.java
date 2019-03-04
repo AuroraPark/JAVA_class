@@ -11,19 +11,19 @@ public class Exercise6_09 {
 	class Marine {
 		int x = 0, y = 0; // Marine (x,y) 의 위치좌표
 		int hp = 60; // 현재 체력
-		static int weapon = 6; // 공격력	// 모든 병사의 공격력과 방어력 동일
-		static int armor = 0; // 방어력
+//		static int weapon = 6; // 공격력	// 모든 병사의 공격력과 방어력 동일
+//		static int armor = 0; // 방어력
 
 		/* static 붙일 수 있는 것 : 멤버변수와 메서드, 초기화 블럭
 		 * weaponUp(), armorUp() - static변수에 대한 작업을 하는 메서드이므로
 		 */
-		static void weaponUp() {	// 
-			weapon++;
-		}
-
-		static void armorUp() {
-			armor++;
-		}
+//		static void weaponUp() {	// 
+//			weapon++;
+//		}
+//
+//		static void armorUp() {
+//			armor++;
+//		}
 
 		void move(int x, int y) {
 			this.x = x;
