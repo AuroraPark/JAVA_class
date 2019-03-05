@@ -3,7 +3,7 @@
 package Ex_ch06;
 
 public class Exercise6_19 {
-	public static void change(String str) {
+	public static void change(String str) { //참조형
 		str += "456";
 	}
 
