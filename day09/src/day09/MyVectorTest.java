@@ -1,12 +1,17 @@
+// 내코드
+
 package day09;
 
 import static org.junit.Assert.assertTrue;
+
+import java.util.Vector;
 
 import org.junit.Test;
 
 public class MyVectorTest {
 	@Test
 	public void isEmptyTest() {
+//		Vector v = new Vector(); // Vector의 기능을 확인하고, MyVector도 같은 결과를 얻는지 비교한다.
 		MyVector v = new MyVector();
 		assertTrue(v.isEmpty() == true);
 
@@ -27,7 +32,7 @@ public class MyVectorTest {
 
 //
 //=====add() test=====
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void addTest() {
 		MyVector v = new MyVector();
 		// 넣지 않았을 때 비어있는지
@@ -39,9 +44,8 @@ public class MyVectorTest {
 		assertTrue(v.isEmpty() == false);
 		// 사이즈가 늘어나는지
 		assertTrue(v.size() == 1);
-		// 기본 생성자로 생성된 capacity가 16인지
-		assertTrue(v.capacity == 16);
-		
+
+
 		// 2. size 외 add
 		for (int i = 2; i < 100; i++) {
 			v.add(i);
@@ -49,7 +53,6 @@ public class MyVectorTest {
 		assertTrue(v.isEmpty() == false);
 		// 7. add 후 size가 늘어나는지, index 값이 늘어나는지
 		assertTrue(v.size() == 99);
-		assertTrue(v.capacity() == 16 );
 
 		// 3. capacity 보다 add
 		for (int i = 2; i < 100; i++) {
@@ -66,6 +69,35 @@ public class MyVectorTest {
 
 		// 8. add를 넣을 때 넣은 값과 index의 값이 같은지
 
+		v.add(null);
+		try {
+			assertTrue(v.get(0) == null);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		assertTrue(v.indexOf(null) == 0);
+
+//		assertTrue(v.size==0);
+//		
+//		v.add("1");
+//		assertTrue(v.size()==1);
+//		v.add("1");
+//		assertTrue(v.size()==2);
+//		
+//		// 지정한 값이 잘 저장되었는지 확인
+//		assertTrue("1".equals(v.get(0)));
+//		
+//		Vector v2 = new Vector();
+//		for(int i=0; i< 1000000; i++) {
+//			v.add(i+"");
+//		}
+//		assertTrue(v2.size(1000000));
+//		
+//		Vector v1 = new Vector();
+//		assertTrue(v2.size(1000000));
+//	
 	}
 
 //=====get() test=====
