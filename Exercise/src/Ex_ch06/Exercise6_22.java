@@ -13,18 +13,34 @@ package Ex_ch06;
 class Exercise6_22 {
 	/* (1) isNumber . 메서드를 작성하시오 */
 	// 객체 생성이 없으니 클래스 메서드로 작성
-	static boolean isNumber(String str) {
-		boolean flag = true;
-		
+	public static boolean isNumber(String str) {
+//		boolean flag = true;
+//		
+//		for (int i = 0; i < str.length(); i++) {
+//			char ch = str.charAt(i); // 문자열 담을 변수
+//			if (!('0' <= ch && ch <= '9')) { // 숫자인지 확인
+//				flag = false;
+//			}else {
+//				continue;	
+//			}
+//		}
+//		return flag;
+
+		// 개선코드
+		// 유효성검사
+		if (str == null || str.equals(""))
+			return false;
+
+		// 숫자가 아니라면
 		for (int i = 0; i < str.length(); i++) {
 			char ch = str.charAt(i); // 문자열 담을 변수
 			if (!('0' <= ch && ch <= '9')) { // 숫자인지 확인
-				flag = false;
-			}else {
-				continue;	
+				return false;
 			}
 		}
-		return flag;
+		
+		// 나머지숫자 true
+		return true;
 	}
 
 	public static void main(String[] args) {

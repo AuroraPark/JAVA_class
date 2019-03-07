@@ -65,8 +65,8 @@ class Student {
 	}
 
 	String info() {
-		return this.name + ", " + this.ban + ", " + this.no + ", " + this.kor + ", " + this.eng
-				+ ", " + this.math + ", " + this.getTotal() + ", " + this.getAverage();
+		return this.name + ", " + this.ban + ", " + this.no + ", " + this.kor + ", " + this.eng + ", " + this.math
+				+ ", " + this.getTotal() + ", " + this.getAverage();
 	}
 
 }

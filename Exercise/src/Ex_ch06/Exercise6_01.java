@@ -27,7 +27,7 @@ class SutdaCard {
 		this.isKwang = isKwang;
 	}
 
-	String info() {
+	String info() {	//숫자를 문자열로 반환한다. 광인경우 K를 덧붙인다.
 		return num + (isKwang ? "K" : "");
 	}
 }

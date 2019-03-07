@@ -7,31 +7,36 @@
 	매개변수: int[] arr - 정수값이 담긴 배열
 */
 
-
 package Ex_ch06;
 
-
-public class Exercise6_20 
-{
+public class Exercise6_20 {
 	/* (1)shuffle 메서드를 작성하시오. */
 	static int[] shuffle(int[] arr) {
+		// 유효성 체크
+		// arr가 null 이거나 길이가 0인경우
+		if(arr==null || arr.length==0)
+			return arr;
+		
 		// 셔플하는 코드(Math.random()) 사용한다.
-		for(int i = 0; i < arr.length; i++) {
-			int n = (int)(Math.random() * 9)+1;
+		for (int i = 0; i < arr.length; i++) {
+//			int n = (int) (Math.random() * 9) + 1;
+			// 개선 코드
+			int n = (int) (Math.random() * arr.length);
+			
+			
 			int tmp = arr[0];
 			arr[0] = arr[n];
-			arr[n] =tmp;
+			arr[n] = tmp;
 		}
 		// 반환타입 int[]
 		return arr;
 	}
-	
-	public static void main(String[] args) 
-	{
+
+	public static void main(String[] args) {
 		int[] original = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		System.out.println(java.util.Arrays.toString(original));
-		
-		int[] result = shuffle(original);	//객체 생성이 없으니 cm으로 만든다.
+
+		int[] result = shuffle(original); // 객체 생성이 없으니 cm으로 만든다.
 		System.out.println(java.util.Arrays.toString(result));
 
 	}

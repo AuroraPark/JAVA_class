@@ -7,14 +7,16 @@ package Ex_ch06;
 
 class Exercise6_24 {
 	/* (1) abs . 메서드를 작성하시오 */
-	static int abs(int value) {
-		if (value > 0) {
-			return value;
-		} else if (value < 0) {
-			return value * (-1);
-		} else {
-			return 0;
-		}
+	public static int abs(int value) {
+//		if (value > 0) {
+//			return value;
+//		} else if (value < 0) {
+//			return value * (-1);
+//		} else {
+//			return 0;
+//		}
+		//개선 코드
+		return value>=0? value: -value;
 	}
 
 	public static void main(String[] args) {
