@@ -6,8 +6,7 @@ import org.junit.Test;
 
 public class baseBallCheck {
 
-	// Q. 세 개의 정수를 입력받아서 그 중에 2째로 큰 값을 반환하는 메서드
-	// int mid(int x, int y, int z)를 작성하시오.
+// 야구게임 만들기
 
 	String baseBallCheck(int[] arr1, int[] arr2) {
 		int s = 0;
@@ -27,19 +26,5 @@ public class baseBallCheck {
 
 	}
 
-	@Test
-	public void test() {
-		assertTrue(mid(1, 2, 3) == 2);
-	}
-
-	@Test
-	public void test2() {
-		assertTrue(mid(1, 1, 1) == 2);
-	}
-
-	@Test
-	public void test3() {
-		assertTrue(mid(1, 3, 2) == 2);
-	}
 
 }

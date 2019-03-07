@@ -135,6 +135,8 @@ public class MyVector {
 //	8. MyVector 클래스의 객체 배열 objArr에서 
 //	지정된 객체를 삭제하는 boolean remove(Object obj)를 작성하시오.
 //	(indexOf()를 이용할것.)
+//	왜 boolean 값을 리턴값으로갖지,,,?
+//			object를 리턴하는걸로 일단 해보자
 	Object remove(Object obj) {
 		int index = indexOf(obj);
 		// 만약에 동일한 객체가 2개있으면 어떻게 하지? - 1번으로 처리
@@ -144,18 +146,18 @@ public class MyVector {
 
 		// 만약 마지막데이터가 아닌 경우
 		if (!(index == size)) {
-			// 삭제할 데이터 아래의 데이터를 한칸씩 위로 복사
+			// 임시 배열 생성
 			Object[] tmp = new Object[objArr.length];
-
+			// 삭제할 데이터 아래의 데이터를 한칸씩 위로 복사
+			// System.arraycopy(objArr,index+1, objArr, index, size-index-1)
 			for (int i = 0; i < index; i++) {
 				tmp[i] = objArr[i];
 			}
 			for (int i = index; i < size; i++) {
-				tmp[i] = objArr[i+1];
+				tmp[i] = objArr[i + 1];
 			}
 			// tmp를 objArr에 저장
 			objArr = tmp;
-
 		}
 		objArr[size - 1] = null;
 		size--;

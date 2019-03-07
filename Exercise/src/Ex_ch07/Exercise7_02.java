@@ -36,8 +36,13 @@ class SutdaDeck {
 		//숫자가 1,3,8 인 경우에는 둘 중의 한 장은 광(Kwang) 이어야 한다 
 		//즉 SutdaCard의 인스턴스변수 isKwang의 값이 true이어야 한다
 		/*(1)배열 SutdaCard를 적절히 초기화 하시오*/
-		for(int k = 0; k<CARD_NUM;k++) {
-			SutdaCard[k++] = new SutdaCard(k,false)
+		int[] SutdaCard = new int[20];
+		
+		int i = 0;
+		
+		for(int k = 0; k<10;k++) {
+			for(int n=0; n < Card.CARD_NUM; n++)
+			SutdaCard[i++] = new SutdaCard(k, false) ;
 		}
 		
 	}
@@ -52,16 +57,16 @@ class SutdaDeck {
 //	기 능: 배열  cards 에서 지정된 위치의  SutdaCard를 반환한다 .
 //	반환타입 : SutdaCard
 //	매개변수 : int index -위치
-	static SutdaCard pick(int index) {
-		return 1;
-	}
-//3. 메서드명: pick 
-//	기 능 :배열 cards에서 임의의 위치의 SutdaCard 를 반환한다.(Math.random()사용 )
-//	반환타입 : SutdaCard
-//	매개변수 : 없음 
-	static SutdaCard pick() {
-		return 0;
-	}
+//	static SutdaCard pick(int index) {
+//		return 1;
+//	}
+////3. 메서드명: pick 
+////	기 능 :배열 cards에서 임의의 위치의 SutdaCard 를 반환한다.(Math.random()사용 )
+////	반환타입 : SutdaCard
+////	매개변수 : 없음 
+//	static SutdaCard pick() {
+//		return 0;
+//	}
 
 	
 } // SutdaDeck
