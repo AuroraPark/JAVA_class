@@ -13,6 +13,7 @@ public class QueueEx1 {
 	static Queue q = new LinkedList();
 	static final int MAX_SIZE = 5; // Queue에 최대 5개 까지만 저장
 	static Properties sysProp = System.getProperties();
+	static Properties prop = new Properties();
 
 	public static void main(String[] args) {
 		System.out.println("help를 입력하면 도움말을 볼 수 있습니다.");
@@ -39,7 +40,7 @@ public class QueueEx1 {
 					// 현재 dir 위치
 					System.out.println(" dir - 현재 폴더 위치를 보여줍니다.");
 					// output
-					System.out.println(" output - 현재 history를 txt파일로 내보냅니다.");
+					System.out.println(" output - 현재 System.getProperties를 txt파일로 내보냅니다.");
 
 				} else if (input.equalsIgnoreCase("date")) { // 오늘 날짜
 					int i = 0;// 입력받은 명령어를 저장하고,
@@ -65,13 +66,10 @@ public class QueueEx1 {
 					while (it.hasNext())
 						System.out.println(++i + "." + it.next());
 
-				} else if (input.equalsIgnoreCase("output")) { // history를 파일으로 저장
-					LinkedList tmp = (LinkedList) q;
-					ListIterator it = tmp.listIterator();
+				} else if (input.equalsIgnoreCase("output")) { // System.getProperties를 파일으로 저장
 
-					
 					try {
-						((Properties) it).store(new FileOutputStream("history.txt"), "Queue Example");
+						sysProp.store(new FileOutputStream("SystemProperty.txt"), "getProperties Example");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
