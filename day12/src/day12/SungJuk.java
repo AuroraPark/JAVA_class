@@ -19,10 +19,7 @@
 
 package day12;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 class SungJuk {
 	public static void main(String[] args) {
@@ -44,7 +41,7 @@ class SungJuk {
 		calculateClassRank(list); // 반등수를 계산한다.
 
 //		System.out.println("[반별 총점높은 순으로 정렬]");
-//		Collections.sort(list, new ClasstotalComparator()); // 반, 총점 순으로 정렬
+//		Collections.sort(list, new ClassTotalComparator()); // 반, 총점 순으로 정렬
 //		printList(list);
 //
 //		System.out.println();
@@ -56,14 +53,16 @@ class SungJuk {
 	}
 
 	public static void printList(List<Student> list) {
-		System.out.println("이름\t반\t번호\t국어\t수학\t영어\t총점\t전교등수\t반등수");
-		System.out.println("===============================================================");
+//		System.out.println("이름\t반\t번호\t국어\t수학\t영어\t총점\t전교등수\t반등수");
+		System.out.println("이름     반  번호  국어  수학  영어   총점  전교등수  반등수");
+
+		System.out.println("=======================================================");
 
 		for (Student s : list) {
 			System.out.println(s);
 		}
 
-		System.out.println("===============================================================");
+		System.out.println("=======================================================");
 	}
 
 //	[문제 5] 총점으로 전교등수를 계산하고 총점이 높은 순에서 낮은 순(내림차순)으로 정렬해서 list를 출력하세요.
@@ -73,7 +72,7 @@ class SungJuk {
 		Collections.sort(list); // 먼저 list를 총점기준 내림차순으로 정렬한다.
 
 		int prevRank = -1; // 이전 전교등수
-		int prevtotal = -1; // 이전 총점
+		int prevTotal = -1; // 이전 총점
 		int length = list.size();
 		// 카운트 변수 사용
 //		int count = 1; // 동점자 수
@@ -87,7 +86,7 @@ class SungJuk {
 			Student st = list.get(i);
 
 //			1.1 총점(total)이 이전총점(prevtotal)과 같으면
-			if (st.total == prevtotal) {
+			if (st.total == prevTotal) {
 //              이전 등수(prevRank)를 등수(schoolRank)로 한다.
 				st.schoolRank = prevRank;
 			} else {
@@ -99,10 +98,9 @@ class SungJuk {
 				// 크면 등수를 i+1부터 다시시작
 				st.schoolRank = i + 1;
 			}
+//			1.3 현재 총점과 등수를 이전총점(prevtotal)과 이전등수(prevRank)에 저장한다.
 			prevRank = st.schoolRank;
-			prevtotal = st.total;
-//          1.3 현재 총점과 등수를 이전총점(prevtotal)과 이전등수(prevRank)에 저장한다.
-
+			prevTotal = st.total;
 		} // for문 끝
 	} // public static void calculateSchoolRank(List<STUDENT> list) {
 
@@ -126,27 +124,27 @@ class SungJuk {
 				prevRank = -1;
 				prevTotal = -1;
 				n = 0;
-
 			}
+
 //		 * 1.1 총점(total)이 이전총점(prevTotal)과 같으면
 			if (st.total == prevTotal) {
 //		 * 이전 등수(prevRank)를 등수(schoolRank)로 한다.
-				st.schoolRank = prevRank;
+				st.classRank = prevRank;
 //		 * 1.2 총점이 서로 다르면,
 			} else {
 //		 * 등수(schoolRank)의 값을 알맞게 계산해서 저장한다.
 //		 * 이전에 동점자 였다면, 그 다음 등수는 동점자의 수를 고려해서 계산되어야한다.
-				st.schoolRank = n + 1;
+				st.classRank = n + 1;
 			}
 
 //			* (실행결과 화면 참고)
 //		 * 1.3 현재 반과 총점과 등수를 이전반(prevClassNo)와 이전총점(prevTotal)과 이전등수(prevRank)에 저장한다.
 			prevClassNo = st.classNo;
-			prevRank = st.schoolRank;
+			prevRank = st.classRank;
 			prevTotal = st.total;
 		} // for문 끝
 	} // public static void calculateClassRank(List<Student> list) {
-
+	
 }
 
 class Student implements Comparable<Student> {
@@ -169,24 +167,19 @@ class Student implements Comparable<Student> {
 	int total = 0;
 
 	int schoolRank = 0; // 전교등수
-
 	int classRank = 0; // 반등수
-
-	Student() {
-
-	}
 
 //   2. 이름, 반, 번호, 국어, 수학, 영어를 입력받아서 각 인스턴스변수에 저장하는
 //        생성자를 선언한다.
-	Student(String name, int classNo, int studentNo, int Korean, int Math, int English) {
+	Student(String name, int classNo, int studentNo, int koreanScore, int mathScore, int englishScore) {
 		this.name = name;
 		this.classNo = classNo;
 		this.studentNo = studentNo;
-		this.koreanScore = Korean;
-		this.mathScore = Math;
-		this.englishScore = English;
+		this.koreanScore = koreanScore;
+		this.mathScore = mathScore;
+		this.englishScore = englishScore;
 
-		total = Korean + Math + English;
+		total = koreanScore + mathScore + englishScore;
 	}
 
 //   3. Object클래스의 toString()을 오버라이딩해서 실행결과와 같이,
@@ -226,6 +219,7 @@ class Student implements Comparable<Student> {
 		if (str == null)
 			str = "";
 		int diff = length - str.length();
+
 		// 주어진 문자열(str)의 길이보다 length의 값이 작으면 str를 length만큼만 남기고 잘라낸다.
 		// 예를 들어, str이 "012345"이고, length가 3이면 결과는 "012"가 된다.
 		if (diff < 0)
@@ -240,20 +234,21 @@ class Student implements Comparable<Student> {
 //		 * 다음의 코드를 완성하세요.
 //		 * 1. 조건문을 이용해서 alignment의 값에 따라 다르게 처리한다.
 //		 * (배열간의 복사에는 System.arraycopy()를 사용한다.)
+//		System.arraycopy(data,1,data2,3,4) 이용법 -
+		// data[1]에서 data2[3]으로 4개의 데이터를 복사하라는 의미이다.
+
 //		 * 1.1 alignment의 값이 CENTER - 1일 때,
-		if (alignment == 1) {
+		if (alignment == CENTER) {
 //		 * source의 내용이 result의 가운데 복사되도록 한다.
-			result = System.arraycopy(result, 1, source, length, 0);
+			System.arraycopy(source, 0, result, length / 2, str.length());
 //		 * 1.2 alignment의 값이 RIGHT - 2일 때,
-		} else if (alignment == 2) {
-
-			result = System.arraycopy(result, 1, source, length, 0);
-//		 * source의 내용의 끝이 result의 오른쪽 끝에 붙게 복사되도록 한다.
-
+		} else if (alignment == RIGHT) {
+			System.arraycopy(source, 0, result, length - str.length(), str.length());
+			// * source의 내용의 끝이 result의 오른쪽 끝에 붙게 복사되도록 한다.
 //		 * 1.3 alignment의 값이 LEFT - 0  또는 그 밖의 값 일 때
 		} else {
+			System.arraycopy(source, 0, result, 0, str.length());
 
-			result = System.arraycopy(result, 1, source, length, 0);
 		}
 //					
 //		 * source의 내용을 result의 왼쪽끝 부터 복사되도록 한다
@@ -271,7 +266,7 @@ class ClassTotalComparator implements Comparator<Student> {
 		int result = s1.classNo - s2.classNo;
 		// 반이 같으면
 		if (result == 0) {
-			result = (s1.total - s2.total) * -1;
+			result = s2.total - s1.total;
 		}
 		// 2. 총점로 정렬
 		return result;
@@ -293,3 +288,5 @@ class ClassStudentNoComparator implements Comparator<Student> {
 		return result;
 	}
 }
+
+
