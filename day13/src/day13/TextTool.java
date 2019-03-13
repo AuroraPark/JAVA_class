@@ -15,12 +15,37 @@
 //            'substring'버튼을 구현하세요..
 //[문제7] TextArea의 각 라인에서 param1에 입력된 문자열과 param2에 입력된 문자열을 찾아서 두 문자열 사이의 텍스트만
 //           남기고 삭제하는 기능의 'substring2'버튼을 구현하세요.
+//[문제8] TextArea의 라인의 내용중 중복된 것을 제고하고 정렬해서 보여주는 'distinct'버튼을  구현하세요.
+//[문제9] TextArea의 라인의 내용중 중복된 것을 제고하고 정렬해서 보여주는 'distinct'버튼에 기능을 추가해서
+//            중복된 라인의 수도 같이 보여주는 'distinct2'버튼을 구현하세요.
+//[문제10] TextArea의 데이터를 라인별로 읽어서 param1에 입력된 형식에 맞게 변형하여 보여주는 '패턴적용'버튼을
+//             구현하세요.
+//[문제11] TextArea의 데이터를 라인별로 읽어서 param1에 입력된 형식에서 데이터를 뽑아내서 보여주는 '패턴제거'버튼을
+//             구현하세요.
 package day13;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
-import java.util.*;
+import java.awt.Button;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TextTool extends Frame implements WindowListener {
 	TextArea ta;
@@ -36,6 +61,10 @@ public class TextTool extends Frame implements WindowListener {
 			"접두사추가", // Param1과 Param2의 문자열을 각 라인의 앞뒤에 붙이는 기능
 			"substring", // Param1과 Param2에 지정된 문자열을 각 라인에서 제거하는 기능
 			"substring2", // Param1과 Param2에 지정된 문자열로 둘러싸인 부분을 남기고 제거하는 기능
+			"distinct", // 중복값제거한 후 정렬해서 보여주기
+			"distinct2", // 중복값제거한 후 정렬해서 보여주기 - 중복카운트 포함
+			"패턴적용", // 데이터에 지정된 패턴 적용하기
+			"패턴제거", // 데이터에 적용된 패턴 제거하기
 
 	};
 
@@ -275,12 +304,269 @@ public class TextTool extends Frame implements WindowListener {
 
 				prevText = curText;
 
+////				 * 다음의 코드를 완성하세요.
+////				 * 1. param1과 param2의 값을 가져온다.(getText()사용)
+//				String frontText = tfParam1.getText();
+//				String backText = tfParam2.getText();
+//				int fromNum = 0;
+//				int toNum = 0;
+////				 * 2. Scanner클래스와 반복문을 이용해서 curText를 라인단위로 읽는다.
+//				Scanner sc = new Scanner(curText);
+////				 * 3. 각 라인에서 param1, param2과 일치하는 문자열의 위치를 찾는다.
+////				 * (param1은 라인의 왼쪽끝부터, param2는 라인의 오른쪽끝부터 찾기 시작한다.)
+//				for (int i = 0; sc.hasNextLine(); i++) {
+//					String line = sc.nextLine();
+//
+//					fromNum = line.indexOf(frontText);
+//					toNum = line.lastIndexOf(backText);
+//
+////					 * param1과 param2로 둘러쌓인 부분을 sb에 저장한다.
+//					sb.append(line.substring(fromNum + frontText.length(), toNum)).append(CR_LF);
+//
+//				}
+////				 * 4. sb의 내용을 TextArea에 보여준다.
+
+				// 다른코드
+				ta.setText(sb.toString());
+
+				String param1 = tfParam1.getText();
+				String param2 = tfParam2.getText();
+
+				Scanner s = new Scanner(curText);
+
+				for (int i = 0; s.hasNextLine(); i++) {
+					String line = s.nextLine();
+
+					int from = line.indexOf(param1);
+					int to = line.lastIndexOf(param2);
+
+					// 없는 경우(-1)도 처리해준다.
+					from = (from == -1) ? 0 : from + param1.length();
+					to = (to == -1) ? line.length() : to;
+
+					if (from > to)
+						return;
+
+					sb.append(line.substring(from, to));
+					sb.append(CR_LF);
+				}
+
+				ta.setText(sb.toString());
+
+			}
+		});
+
+		btn[n++].addActionListener(new ActionListener() { // distinct - 중복 라인 제거
+			public void actionPerformed(ActionEvent ae) {
+				String curText = ta.getText();
+				StringBuffer sb = new StringBuffer(curText.length());
+
+				prevText = curText;
 //				 * 다음의 코드를 완성하세요.
-//				 * 1. param1과 param2의 값을 가져온다.(getText()사용)
-//				 * 2. Scanner클래스와 반복문을 이용해서 curText를 라인단위로 읽는다.
-//				 * 3. 각 라인에서 param1, param2과 일치하는 문자열의 위치를 찾는다.
-//				 * (param1은 라인의 왼쪽끝부터, param2는 라인의 오른쪽끝부터 찾기 시작한다.)
-//				 * param1과 param2로 둘러쌓인 부분을 sb에 저장한다.
+//				 * 1. Scanner클래스와 반복문을 이용해서 curText를 라인단위로 읽어서 HashSet에 담는다.
+				Scanner s = new Scanner(curText);
+				HashSet set = new HashSet();
+
+				for (int i = 0; s.hasNextLine(); i++) {
+					set.add(s.nextLine());
+				}
+//				 * 2. HashSet의 내용을 ArrayList로 옮긴다음 정렬한다.(Collections의 sort()사용)
+				ArrayList list = new ArrayList(set);
+				Collections.sort(list);
+
+				for (int i = 0; i < list.size(); i++) {
+//				 * 3. 정렬된 ArrayList의 내용을 sb에 저장한다.
+					sb.append(list.get(i)).append(CR_LF);
+				}
+//				 * 4. sb에 저장된 내용을 TextArea에 보여준다.
+				ta.setText(sb.toString());
+			}
+
+			// 다른코드
+//            Scanner s = new Scanner(curText); 
+//            HashSet set = new HashSet(); 
+//
+//            for(int i=0;s.hasNextLine();i++) { 
+//                  String line = s.nextLine(); 
+//                  set.add(line); 
+//            } 
+//
+//            ArrayList list = new ArrayList(set); 
+//            Collections.sort(list); 
+//
+//            int size = list.size(); 
+//
+//            for(int i=0; i < size;i++){ 
+//                  sb.append(list.get(i)); 
+//                  sb.append(CR_LF); 
+//            } 
+//
+//            ta.setText(sb.toString()); 
+//      } 
+
+		});
+
+		btn[n++].addActionListener(new ActionListener() { // distinct2 - 중복 라인 제거 + 카운트
+			public void actionPerformed(ActionEvent ae) {
+//				String curText = ta.getText();
+//				StringBuffer sb = new StringBuffer(curText.length());
+//
+//				prevText = curText;
+////				 * 다음의 코드를 완성하세요.
+////				 * 1. Scanner클래스와 반복문을 이용해서 curText를 라인단위로 읽어서 TreeMap에 담는다.
+//				Scanner s = new Scanner(curText);
+//				TreeMap map = new TreeMap();
+//				String delimiter = "";
+//
+//				for (int i = 0; s.hasNextLine(); i++) {
+////				 * 1.1 TreeMap에 담을 때, 각 라인을 키로 저장하고 값으로는 중복회수를 저장한다.
+////				 * 1.2 TreeMap에 담을 때, 이미 같은 내용의 값이 저장되어 있는지 확인하고
+//					String line = s.nextLine();
+//					if (map.containsKey(line)) {
+//						Integer value = (Integer) map.get(line);
+////				 * 1.1.1 이미 같은 내용이 저장되어 있으면, 해당 키의 값을 읽어서 1증가시키고
+//						map.put(line, new Integer(value.intValue() + 1));
+//
+//					} else {
+////				 * 1.1.2 새로운 키값이면 1을 값으로 저장한다.
+//						map.put(line, new Integer(1));
+//					}
+////				 * 2. param1에 지정된 문자열이 있으면, 그 문자열을 키와 값의 구분자로 사용하고
+//
+//					if (!("".equals(tfParam1.getText())))
+//						delimiter = tfParam1.getText();
+////				 * 없으면, ','를 구분자로 지정한다.
+//					else
+//						delimiter = ",";
+//
+//				}
+////				 * 3. Iterator를 이용해서 TreeMap에 저장된 키와 값을 구분자와 함께 sb에 저장한다.
+////				 * (TreeMap을 사용했기 때문에, 자동적으로 키값을 기준으로 오름차순 정렬된다.)
+//				Iterator it = map.entrySet().iterator();
+//				while (it.hasNext()) {
+//					Map.Entry entry = (Map.Entry) it.next();
+//					int value = ((Integer) entry.getValue()).intValue();
+//					sb.append(entry.getKey());
+//					sb.append(delimiter);
+//					sb.append(value);
+//					sb.append(CR_LF);
+//				}
+////				 * 4. sb에 저장된 내용을 TextArea에 보여준다.
+//				ta.setText(sb.toString());
+//			}
+				// 개선 코드
+				String curText = ta.getText();
+				StringBuffer sb = new StringBuffer(curText.length());
+
+				prevText = curText;
+
+				Scanner s = new Scanner(curText);
+				TreeMap map = new TreeMap();
+
+				String delimiter = tfParam1.getText();
+
+				if (delimiter.length() == 0)
+					delimiter = ",";
+
+				for (int i = 0; s.hasNextLine(); i++) {
+					String line = s.nextLine();
+
+					if (map.containsKey(line)) {
+						Integer value = (Integer) map.get(line);
+						map.put(line, new Integer(value.intValue() + 1));
+					} else {
+						map.put(line, new Integer(1));
+					}
+				}
+
+				Iterator it = map.entrySet().iterator();
+
+				while (it.hasNext()) {
+					Map.Entry entry = (Map.Entry) it.next();
+
+					int value = ((Integer) entry.getValue()).intValue();
+
+					sb.append(entry.getKey());
+					sb.append(delimiter);
+					sb.append(value);
+					sb.append(CR_LF);
+				}
+
+				ta.setText(sb.toString());
+			}
+
+		});
+
+		btn[n++].addActionListener(new ActionListener() { // 패턴적용
+			public void actionPerformed(ActionEvent ae) {
+				String curText = ta.getText();
+				StringBuffer sb = new StringBuffer(curText.length());
+
+				prevText = curText;
+
+				String pattern = tfParam1.getText();
+				String delimiter = tfParam2.getText();
+
+				if (delimiter.length() == 0)
+					delimiter = ",";
+
+//				 * 다음의 코드를 완성하세요.
+//				 * 1. Scanner클래스와 반복문을 이용해서 curText를 라인단위로 읽는다.
+				Scanner s = new Scanner(curText);
+
+				for (int i = 0; s.hasNextLine(); i++) {
+					String line = s.nextLine();
+
+//				 * 2. 라인을 구분자(delimiter)로 나누어 문자열 배열에 저장한다.(String클래스의 split()사용)
+					String[] tokens = line.split(delimiter);
+//				 * 3. param1로부터 입력받은 pattern을 각 라인에 적용해서 sb에 저장한다.
+//				 * (MessageFormat클래스의 format()사용)
+					sb.append(MessageFormat.format(pattern, tokens)).append(CR_LF);
+
+				}
+//				 * 4. sb의 내용을 TextArea에 보여준다.
+				ta.setText(sb.toString());
+			}
+		});
+
+		btn[n++].addActionListener(new ActionListener() { // 패턴제거
+			public void actionPerformed(ActionEvent ae) {
+				String curText = ta.getText();
+				StringBuffer sb = new StringBuffer(curText.length());
+
+				prevText = curText;
+
+				String pattern = tfParam1.getText();
+				String delimiter = tfParam2.getText();
+
+				Pattern p = Pattern.compile(pattern);
+
+				if (delimiter.length() == 0)
+					delimiter = ",";
+
+//				 * 다음의 코드를 완성하세요.
+//				 * 1. Scanner클래스와 반복문을 이용해서 curText를 라인단위로 읽는다.
+				Scanner s = new Scanner(curText);
+//				 * 2. 각 라인을 pattern에 맞게 매칭시킨다.(Pattern클래스의 matcher()사용)
+				for (int i = 0; s.hasNextLine(); i++) {
+					String line = s.nextLine();
+
+					Pattern p1 = Pattern.compile(tfParam1.getText());
+					Matcher m = p1.matcher(line);
+
+//				 * 3. pattern에 매칭되는 데이터를 구분자와 함께 sb에 저장한다.
+					while (m.find()) {
+						sb.append(m.group(1));
+						sb.append(tfParam2.getText());
+
+						sb.append(m.group(2));
+						sb.append(tfParam2.getText());
+
+						sb.append(m.group(3));
+						sb.append(tfParam2.getText()).append(CR_LF);
+					}
+				}
+
 //				 * 4. sb의 내용을 TextArea에 보여준다.
 				ta.setText(sb.toString());
 			}
