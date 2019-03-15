@@ -1,31 +1,32 @@
 package Ex_ch11k;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
-
-
+// 람다와 스트림을 사용해서
 
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class test {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		String line = sc.nextLine();
-
-		// String을 배열로 바꿈
-		char[] ch = line.toCharArray();
-		for (int i = 0; i < ch.length; i++) {
-			for (int j = 0; j < ch.length; j++) {
-				if (ch[j] < ch[i]) {
-					char tmp = ch[i];
-					ch[i] = ch[j];
-					ch[j] = tmp;
-				}
-			}
-			// 배열 한자리씩 가지고와서 서로 비교후 자리바꿈
-			// 1. tmp에 첫번째 담기
-
+//		System.out.print("숫자를입력하세요.>");
+		int N = sc.nextInt();
+		sc.nextLine();
+		String[] line = new String[N];
+		for (int i = 0; i < N; i++) {
+//			System.out.print("단어를 입력하세요>");
+			line[i] = sc.nextLine();
 		}
-		System.out.println(ch);
+		//배열로만들기
+		ArrayList<String> lineArr = new ArrayList<String>(Arrays.asList(line));
+		// 스트림으로 만들기
+		Stream<String> lineStream = lineArr.stream();
+		// 중복제거
+		lineStream.distinct().sorted().sorted(Comparator.comparing(String::length)).forEach(System.out::println);
+		// 길이순 정렬
+		// 글자순 정렬
 	}
 }
-
