@@ -38,12 +38,10 @@ class SutdaDeck {
 		/* (1)배열 SutdaCard를 적절히 초기화 하시오 */
 		int[] SutdaCard = new int[20];
 
-		int i = 0;
-		for (i = 0; i < 2; i++) {
-			for (int k = 0; k < 10; k++) {
-				boolean z = i == 1 && (k == 1 || k == 3 || k == 8);
-					SutdaCard cards[k] = (Ex_ch07.SutdaCard) new SutdaCard(k, z);
-			}
+		for (int i = 0; i < cards.length; i++) {
+			int num = i % 10 + 1;
+			boolean isKwang = (i < 10) && (num == 1 || num == 3 || num == 8);
+			cards[i] = new SutdaCard(num, isKwang);
 		}
 
 	}
@@ -51,23 +49,36 @@ class SutdaDeck {
 //	기 능 : 배열 cards에 담긴 카드의 위치를 뒤섞는다( Math.random()사용)
 //	반환타입 :없음 
 //	매개변수 :없음 
-//	static void shuffle() {
 
-//	}
+	void shuffle() {
+		for (int i = 0; i < cards.length; i++) {
+			int j = (int) (Math.random() * cards.length);
+			// cards[i] cards[j] . 와 의 값을 서로 바꾼다
+			SutdaCard tmp = cards[i];
+			cards[i] = cards[j];
+			cards[j] = tmp;
+		}
+	}
+
 //2. 메서드명: pick 
 //	기 능: 배열  cards 에서 지정된 위치의  SutdaCard를 반환한다 .
 //	반환타입 : SutdaCard
 //	매개변수 : int index -위치
-//	static SutdaCard pick(int index) {
-//		return 1;
-//	}
+	SutdaCard pick(int index) {
+		if (index < 0 || index >= CARD_NUM) // index . 의 유효성을 검사한다
+			return null;
+		return cards[index];
+	}
+	
 ////3. 메서드명: pick 
 ////	기 능 :배열 cards에서 임의의 위치의 SutdaCard 를 반환한다.(Math.random()사용 )
 ////	반환타입 : SutdaCard
 ////	매개변수 : 없음 
-//	static SutdaCard pick() {
-//		return 0;
-//	}
+
+	SutdaCard pick() {
+		int index = (int) (Math.random() * cards.length);
+		return pick(index); // pick(int index) . 를 호출한다
+	}
 
 } // SutdaDeck
 

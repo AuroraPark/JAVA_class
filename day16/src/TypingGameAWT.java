@@ -198,19 +198,31 @@ class TypingGameAWT extends Frame {
 
 //			 * 다음의 코드를 완성하세요.
 //			 * 1. TextField의 값을 읽어서 저장한다.(getText()사용)
-			tf.getText();
+			String input = tf.getText();
 //			 * 2. TextField를 비운다.
 			tf.setText("");
 //			 * 3. 게임중(isPlaying)이 아니면, 빠져나간다.
-			if(!isPlaying) {
+			if (!isPlaying) {
 				System.exit(0);
 			}
 //			 * 4. 반복문을 이용해서 사용자가 TextField에 입력한 단어를 words에서 찾는다.
-			
+			for (int i = 0; i < words.size(); i++) {
+				Word word = (Word) words.get(i);
+				if (word.equals(input)) {
+//			 * 2. 있으면 words에서 삭제하고 '삑~'소리가 나게 한다.
+//			 * (java.awt.Toolkit.getDefaultToolkit().beep()사용)
+					java.awt.Toolkit.getDefaultToolkit().beep();
+					words.remove(word);
+//			 * 3. 점수(score)의 값을 계산해서 증가시킨다.
+//			 * (입력한 단어의 글자수 * 남은시간 * 50으로 점수를 계산한다.)
+					// 남은 시간은 어떻게 구하지?
+					score += input.length() * (10 - word.y) * 50;
+				}
+			} // for
 //			 * 4.1 찾으면, words에서 제거한다.
 //			 * 4.2 단어의 길이에 따라 score를 증가시킨다.(단어의 문자개수 * 50)
 //			 * 4.3 '삑~'소리가 나게 한다.(Toolkit.getDefaultToolkit().beep()사용)
-			
+
 //			 * 5. 화면을 다시 그리게 한다.(repaint()사용)
 			repaint();
 		}
