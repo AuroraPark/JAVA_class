@@ -13,7 +13,23 @@ package Ex_ch07;
 
 class Exercise7_18 {
 	/*(1) action . 메서드를 작성하시오*/
-	void action(Robot r) {
+	static void action(Robot r) {
+		// 형변환
+		if(r instanceof DanceRobot)
+		{
+			DanceRobot dr = (DanceRobot) r;
+			dr.dance();
+		}
+		if(r instanceof SingRobot)
+		{
+			SingRobot sr = (SingRobot) r;
+			sr.sing();
+		}
+		if(r instanceof DrawRobot)
+		{
+			DrawRobot dr = (DrawRobot) r;
+			dr.draw();
+		}
 		
 	}
 	
@@ -30,7 +46,7 @@ class Robot {
 
 class DanceRobot extends Robot {
 	void dance() {
-		System.out.println(" 춤을 춥니다 .");
+		System.out.println("춤을 춥니다 .");
 	}
 }
 
